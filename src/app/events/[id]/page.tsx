@@ -9,10 +9,15 @@ import { SearchParamProps } from "@/types";
 import Image from "next/image";
 
 export default async function Page({ params, searchParams }: SearchParamProps) {
-  const id = params.id;
+  // ✅ Await params to get the event ID
+  const { id } = await params;
   const event = await getEventById(id);
 
-  const page = String(searchParams.page) || "";
+  // ✅ Await searchParams before using it
+  const resolvedSearchParams = await searchParams;
+  const page = resolvedSearchParams.page
+    ? String(resolvedSearchParams.page)
+    : "";
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
