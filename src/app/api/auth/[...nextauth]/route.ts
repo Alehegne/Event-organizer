@@ -1,6 +1,9 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import { authOptions } from "@/lib/auth/authOptions";
 
-const handler:AuthOptions = NextAuth(authOptions);
+// NextAuth() returns a request handler, so we don't need to set a type manually
+const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+// Export as API route handlers for Next.js
+export const GET = handler;
+export const POST = handler;
