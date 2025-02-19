@@ -9,17 +9,16 @@ import { SearchParamProps } from "@/types";
 import Image from "next/image";
 
 export default async function Page({ params, searchParams }: SearchParamProps) {
-  //getting the event id
-  const id = (await params).id;
+  const id = params.id;
   const event = await getEventById(id);
 
-  //filter events with category to show related Events
+  const page = String(searchParams.page) || "";
+
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
-    page: (await searchParams).page as string,
+    page,
   });
-
   // console.log("related events", relatedEvents);
   return (
     <div className="bg-purple-50 bg-dotted-pattern bg-contain">
