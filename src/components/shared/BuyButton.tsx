@@ -5,7 +5,6 @@ import React from "react";
 import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
 import CheckOut from "./CheckOut";
-import { toast } from "@/hooks/use-toast";
 
 type types = {
   userId: string;

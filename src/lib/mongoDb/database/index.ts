@@ -5,6 +5,7 @@ const mongo_uri = process.env.DB_URL
 
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const cached =(global as any).mongoose || {conn:null,promise:null}
 
 export const connnectToDatabase = async()=>{

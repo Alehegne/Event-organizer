@@ -20,7 +20,10 @@ import { authOptions } from '../auth/authOptions'
 const getCategoryByName = async (name: string) => {
   return Category.findOne({ name: { $regex: name, $options: 'i' } })
 }
+getCategoryByName('music');
+  
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const populateEvent = (query: any) => {
   return query
     .populate({ path: 'organizer', model: User, select: '_id firstName lastName' })
@@ -108,6 +111,9 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
 // GET ALL EVENTS
 export async function getAllEvents({ query, limit = 6, page, category }: GetAllEventsParams) {
 
+  console.log("query in action",query)
+  console.log("category in action",page)
+  console.log("category",category)
   try{
     await connectToDatabase();
     const conditions = {};

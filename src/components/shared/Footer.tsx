@@ -1,5 +1,4 @@
 import React from "react";
-import { footerLinks } from "./navs/links";
 import Link from "next/link";
 import Image from "next/image";
 
