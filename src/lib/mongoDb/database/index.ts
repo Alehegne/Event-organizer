@@ -18,8 +18,7 @@ export const connnectToDatabase = async()=>{
      
     cached.promise = cached.promise || mongoose.connect(mongo_uri ,{
         dbName:"evently",
-        bufferCommands:false,
-    })
+    }).then((mongoose)=>mongoose);
 
     cached.conn = await cached.promise;
 
