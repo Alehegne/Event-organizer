@@ -8,17 +8,17 @@ import { formatDateTime } from "@/lib/utils";
 import { SearchParamProps } from "@/types";
 import Image from "next/image";
 
-export default async function Page({ params, searchParams }: SearchParamProps) {
+export default async function Page({ params }: SearchParamProps) {
   const id = params.id;
   const event = await getEventById(id);
 
-  // ✅ Ensure searchParams.page is a string
-  const page = searchParams.page ? String(searchParams.page) : "";
+  // // ✅ Ensure searchParams.page is a string
+  // const page = searchParams.page ? String(searchParams.page) : "";
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
-    page,
+    page: 1,
   });
   // console.log("related events", relatedEvents);
   return (
