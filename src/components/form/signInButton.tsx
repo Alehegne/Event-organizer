@@ -1,6 +1,12 @@
 import { signIn } from "next-auth/react";
 
-export default function SignInButton({ provider, children }) {
+export default function SignInButton({
+  provider,
+  children,
+}: {
+  provider: string;
+  children: React.ReactNode;
+}) {
   // console.log("provider", provider);
   return (
     <button

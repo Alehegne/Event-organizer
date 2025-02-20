@@ -1,6 +1,10 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-export default function ErrorMessage({ children }) {
+export default function ErrorMessage({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <AnimatePresence>
       <motion.div

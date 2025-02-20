@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteEvent } from "@/lib/actions/event.actions";
 
-const DeleteConfirmation = ({ eventId }) => {
+const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
   console.log("starting to delete", eventId);
   return (
     <AlertDialog>

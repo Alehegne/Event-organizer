@@ -69,7 +69,7 @@ const Card = async ({ event, hasOrderLink, hidePrice }: CardProps) => {
         </p>
         <div className="flex-between w-full pb-2 px-4">
           <p className="p-medium-14 md:p-medium-16">
-            {event.organizer?.firstName} {event.organizer?.lastName}
+            {event.organizer.firstName} {event.organizer.lastName}
           </p>
           {hasOrderLink && (
             <Link href={`/orders?eventId:${event._id}`} className="flex gap-2">

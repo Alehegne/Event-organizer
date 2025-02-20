@@ -5,7 +5,11 @@ import { authOptions } from "@/lib/auth/authOptions";
 import { getServerSession } from "next-auth";
 import React from "react";
 
-const UpdateEvents = async ({ params }: { params: { id: string } }) => {
+const UpdateEvents = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const session = await getServerSession(authOptions);
   const eventId = (await params).id;
 

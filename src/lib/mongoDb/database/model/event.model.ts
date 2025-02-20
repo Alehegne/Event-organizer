@@ -15,7 +15,7 @@ export interface IEvent extends Document{
     isFree:boolean;
     url?:string;
     category:{_id:string,name:string}
-    organizer:{_id:string,userName:string,photo:string}
+    organizer:{_id:string,userName:string,photo:string,firstName:string,lastName:string}
 }
 
 

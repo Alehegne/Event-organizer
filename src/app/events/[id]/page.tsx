@@ -5,15 +5,17 @@ import {
   getRelatedEventsByCategory,
 } from "@/lib/actions/event.actions";
 import { formatDateTime } from "@/lib/utils";
-import { SearchParamProps } from "@/types";
 import Image from "next/image";
 
-export default async function Page({ params }: SearchParamProps) {
-  const id = params.id;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
   const event = await getEventById(id);
 
-  // // ✅ Ensure searchParams.page is a string
-  // const page = searchParams.page ? String(searchParams.page) : "";
+  // const page = (await searchParams).page;
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,

@@ -63,7 +63,12 @@ export default function SignIn() {
     },
   });
 
-  const onSubmit = async (values) => {
+  type valueProps = {
+    email: string;
+    password: string;
+  };
+
+  const onSubmit = async (values: valueProps) => {
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -92,7 +97,7 @@ export default function SignIn() {
 
   return (
     <>
-      <Form {...form} className="relative">
+      <Form {...form}>
         <div className=" bg-gray-50 shadow-2xl p-4">
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-2">

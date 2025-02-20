@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Poppins } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/sessionProvider";
+import { Suspense } from "react";
 
 // const poppins = Poppins({
 //   variable: "--font-poppins",
@@ -26,7 +27,9 @@ export default async function RootLayout({
     <html lang="en">
       {/* <body className={`${poppins.variable} antialiased`}>{children}</body> */}
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        </AuthProvider>
       </body>
     </html>
   );
