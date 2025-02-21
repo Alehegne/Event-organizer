@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import MobileNavs from "./navs/mobileNavs";
 import NavItems from "./navs/navItems";
 import { signIn, signOut, useSession } from "next-auth/react";
