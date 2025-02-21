@@ -1,3 +1,4 @@
+"use client";
 import { IEvent } from "@/lib/mongoDb/database/model/event.model";
 import React, { useEffect } from "react";
 import { Button } from "../ui/button";

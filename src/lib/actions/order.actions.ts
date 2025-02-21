@@ -1,14 +1,17 @@
 "use server"
 
-import { CheckoutOrderParams } from "@/types"
+import { CheckoutOrderParams, CreateOrderParams } from "@/types"
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import { connnectToDatabase } from "../mongoDb/database";
+import Order from "../mongoDb/database/model/order.model";
+import { handleError } from "../utils";
 
 
 export const checkoutOrder = async(order:CheckoutOrderParams)=>{
-    console.log("checking out...")
+    console.log("checking out in func...")
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-    console.log("stripe",stripe)
+    console.log("stripe in func",stripe)
     try {
         const price = order.isFree ? 0 :Number(order.price) * 100
     // Create Checkout Sessions from body params.
@@ -59,4 +62,25 @@ export const checkoutOrder = async(order:CheckoutOrderParams)=>{
     }
 
 
+}
+
+
+
+export const createOrder = async (order: CreateOrderParams) => {
+  try {
+    await connnectToDatabase();
+    
+    console.log("creating order in db", order);
+    const newOrder = await Order.create({
+      ...order,
+      event: order.eventId,
+      buyer: order.buyerId,
+    });
+
+    console.log("new order created in the db", newOrder);
+
+    return JSON.parse(JSON.stringify(newOrder));
+  } catch (error) {
+    handleError(error);
+  }
 }

@@ -7,9 +7,11 @@ import Link from "next/link";
 import MobileNavs from "./navs/mobileNavs";
 import NavItems from "./navs/navItems";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const session = useSession();
+  const router = useRouter();
 
   const [headerHeight, setHeaderHeight] = useState(150);
 
@@ -32,14 +34,17 @@ const Header = () => {
       style={{ height: `${headerHeight}px` }}
     >
       <div className="flex justify-between items-center h-full container mx-auto">
-        <Link href="/" className="w-[100px] md:w-[200px] h-full relative">
+        <div
+          onClick={() => router.push("/")}
+          className="w-[100px] md:w-[200px] h-full relative"
+        >
           <Image
             src="/assets/images/logo.svg"
             fill
             alt="logo image"
             style={{ objectFit: "contain" }}
           />
-        </Link>
+        </div>
         <NavItems />
         <div className="flex gap-4 items-center">
           <Button

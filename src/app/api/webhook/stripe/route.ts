@@ -1,68 +1,46 @@
-import { NextApiRequest } from "next";
-import stripe from "stripe";
-import { NextResponse } from "next/server";
-import { CreateOrderParams } from "@/types";
-import { createOrder } from "@/lib/actions/order";
+import Stripe from 'stripe'
+import { NextResponse } from 'next/server'
+import { createOrder } from '@/lib/actions/order.actions'
 
-export async function POST(request:Request){
 
-    try{
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+})
+export async function POST(request: Request) {
+  console.log("checking  out the webhooks route in func...")
+  const body = await request.text()
 
-    const body = await request.text();
+  const sig = request.headers.get('stripe-signature') as string
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
-    const signature = request.headers.get('Stripe-Signature') as string;
-    const endPointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+  let event
 
-    let event;
+  try {
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret)
+  } catch (err) {
+    return NextResponse.json({ message: 'Webhook error', error: err },{status:500})
+  }
+  
 
-    try{
-        event = stripe.webhooks.constructEvent(body,signature,endPointSecret);
+  // Get the ID and type
+  const eventType = event.type
+  console.log("event type",eventType)
 
-    }catch(error:unknown){
-        if(error instanceof Error){
-            console.error("webhook error",error);
-            return NextResponse.json({error:`Webhook error ${error.message}`})
-        }
-        console.log("unknown error",error);
-        return NextResponse.json({error:"Unknown error"})
+  // CREATE
+  if (eventType === 'checkout.session.completed') {
+    const { id, amount_total, metadata } = event.data.object
+
+    const order = {
+      stripeId: id,
+      eventId: metadata?.eventId || '',
+      buyerId: metadata?.buyerId || '',
+      totalAmount: amount_total ? (amount_total / 100).toString() : '0',
+      createdAt: new Date(),
     }
 
-    //get the id and type of the event
-    const eventType = event.type;
+    const newOrder = await createOrder(order)
+    console.log("new order creaeted via a webhooks",newOrder)
+    return NextResponse.json({ message: 'OK', order: newOrder },{status:200})
+  }
 
-     //create
-     if(eventType === 'checkout.session.completed'){
-
-        const {id,amount_total,metadata} = event.data.object;
-
-        const order = {
-            stripeId:id,
-            eventId:metadata?.eventId || '',
-            buyerId:metadata?.buyerId || '',
-            totalAmount:amount_total ? (amount_total/100).toString() : '0',
-            createdAt:new Date(),
-        }
-
-        const newOrder = await createOrder(order)
-        
-        return NextResponse.json({message:'0k',order:newOrder})
-
-
-     }
-     //payment failed
-     if(eventType === 'checkout.session.async_payment_failed'){
-     }
-
-    
-
-      return NextResponse.json({received:true})
-
-    }catch(error){
-        console.error("event webhook error",error);
-    }
-
-
-
-
-    
+  return new Response('', { status: 200 })
 }
