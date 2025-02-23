@@ -9,7 +9,12 @@ export default {
   ],
   theme: {
   	extend: {
+		
   		colors: {
+			largeText: "#236E90",
+			Textborder:"#4AFDFD",
+
+
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -28,6 +33,7 @@ export default {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
+			
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
@@ -51,6 +57,20 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+		  animation: {
+			'border-rotate': 'borderSpin 5s linear infinite',
+		  },
+// 		  background: rgb(34,193,195);
+// background: linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%);
+		  keyframes: {
+			borderSpin: {
+			  '0%': { background: 'linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%)',border:"none" },
+			  '25%': { background: 'linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%)' },
+			  '50%': { background: 'linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%)' },
+			  '75%': { background: 'linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%)' },
+			  '100%': { background: 'linear-gradient(0deg, rgba(34,193,195,1) 28%, rgba(59,194,190,1) 100%)' },
+			},
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

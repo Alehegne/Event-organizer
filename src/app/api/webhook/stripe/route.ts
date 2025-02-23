@@ -36,10 +36,15 @@ export async function POST(request: Request) {
       totalAmount: amount_total ? (amount_total / 100).toString() : '0',
       createdAt: new Date(),
     }
+try {
+  const newOrder = await createOrder(order)
+  console.log("new order creaeted via a webhooks",newOrder)
+  return NextResponse.json({ message: 'OK', order: newOrder },{status:200})
+} catch (error) {
+  return NextResponse.json({ message: 'error in creating user order', error },{status:500})
+  
+}
 
-    const newOrder = await createOrder(order)
-    console.log("new order creaeted via a webhooks",newOrder)
-    return NextResponse.json({ message: 'OK', order: newOrder },{status:200})
   }
 
   return  NextResponse.json({message:'ok'}, { status: 200 })

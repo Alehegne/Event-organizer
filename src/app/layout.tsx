@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       {/* <body className={`${poppins.variable} antialiased`}>{children}</body> */}
-      <body>
+      <body className="body-bg-gradient">
         <AuthProvider>
           <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         </AuthProvider>

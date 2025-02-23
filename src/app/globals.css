@@ -69,6 +69,7 @@ body {
   scroll-behavior: smooth;
 }
 
+
 body {
   font-family: var(--font-poppins)
 }
@@ -77,6 +78,57 @@ body {
   filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%)
     hue-rotate(32deg) brightness(98%) contrast(92%);
 }
+.body-bg-gradient {
+background: rgb(55,209,220);
+background: linear-gradient(90deg, rgba(55,209,220,0.9332983193277311) 68%, rgba(30,196,198,1) 100%);
+}
+
+.input-bg{
+  background: hsla(151, 62%, 69%, 1);
+
+  background: linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  background: -moz-linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  background: -webkit-linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#7EE1B1", endColorstr="#FD4B2F", GradientType=1 );
+}
+
+
+.card_bg_gradient{
+  background: hsla(151, 62%, 69%, 1);
+
+  background: linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  background: -moz-linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  background: -webkit-linear-gradient(90deg, hsla(151, 62%, 69%, 1) 100%, hsla(8, 98%, 59%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#7EE1B1", endColorstr="#FD4B2F", GradientType=1 );
+}
+
+ /* text stroke */
+ .text-stroke {
+  -webkit-text-stroke: 45px #4AFDFD;
+}
+.drop{
+  -webkit-box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.demotext {
+  color: #92a5de;
+  text-shadow: 0px 0px 0 #899CD5, 1px 1px 0 #8194CD, 2px 2px 0 #788BC4, 3px 3px 0 #6F82BB, 4px 4px 0 #677AB3, 5px 5px 0 #5E71AA, 6px 6px 0 #5568A1, 7px 7px 0 #4C5F98, 8px 8px 0 #445790, 9px 9px 0 #3B4E87, 10px 10px 0 #32457E, 11px 11px 0 #2A3D76, 12px 12px 0 #21346D, 13px 13px 0 #182B64, 14px 14px 0 #0F225B, 15px 15px 0 #071A53, 16px 16px 0 #02114A, 17px 17px 0 #0B0841, 18px 18px 0 #130039, 19px 19px 0 #1C0930, 20px 20px 0 #251227, 21px 21px 20px rgba(0,0,0,1), 21px 21px 1px rgba(0,0,0,0.5), 0px 0px 20px rgba(0,0,0,.2);
+  color: #92a5de;
+  
+  }
+
+  .header {
+    color: #92a5de;
+    text-shadow: 1px -1px 0 #236E90, -1px 2px 1px #236E90, -2px 4px 1px #236E90, -3px 6px 1px #236E90;
+
+  }
 
 
 @layer base {
@@ -92,6 +144,10 @@ body {
   .wrapper {
     @apply max-w-7xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
   }
+ 
+  .cardBg{
+    @apply bg-[linear-gradient(15deg,rgba(20,40,80,0.7),rgba(20,54,95,0.7),rgba(19,71,111,0.7),rgba(18,93,128,0.7),rgba(16,119,146,0.7),rgba(13,150,165,0.7),rgba(9,184,180,0.7),rgba(4,204,177,0.7))];
+  }
 
   .flex-center {
     @apply flex justify-center items-center;
@@ -105,6 +161,7 @@ body {
     background-size: 150px 150px; /* Adjust dot size & spacing */
     opacity: 1; /* Adjust transparency if needed */
   }
+ 
 
   /* TYPOGRAPHY */
   /* 64 */
@@ -215,14 +272,8 @@ body {
   }
 
   /* SHADCN OVERRIDES */ 
-  .select-field {
-    @apply w-full bg-gray-50 h-[54px] placeholder:text-gray-500 rounded-full p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent focus:ring-transparent ;
-  }
-
-  .input-field {
-    @apply bg-gray-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-gray-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent ;
-  }
-
+ 
+ 
   .textarea {
     @apply bg-gray-50 flex flex-1 placeholder:text-gray-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent ;
   }
@@ -233,6 +284,9 @@ body {
 
   .select-item {
     @apply py-3 cursor-pointer  focus:bg-primary-50;
+  }
+  .input-field {
+    @apply bg-gray-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-gray-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent ;
   }
 
   .toggle-switch {

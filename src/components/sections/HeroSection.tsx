@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 
 const HeroSection = () => {
   return (
-    <section className="pt-20 bg-gray-50 mt-8">
+    <section className="pt-40  mt-8">
       <div className="container mx-auto w-full full">
         <div className="grid grid-cols-1 md:grid-cols-2  gap-10 px-4">
           <div className="flex flex-col justify-center items-start">

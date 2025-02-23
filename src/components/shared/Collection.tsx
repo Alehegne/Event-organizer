@@ -48,7 +48,7 @@ const Collection = ({
           </ul>
         </div>
       ) : (
-        <div className=" w-full  flex justify-center min-h-[200px] items-center mt-4 rounded-lg  bg-blue-50 flex-col gap-4">
+        <div className=" w-full  flex justify-center min-h-[200px] items-center mt-4 rounded-lg  flex-col gap-4">
           <h3 className="text-[20px] md:text-[30px] font-bold ">
             {emptyTitle}
           </h3>

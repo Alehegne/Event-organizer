@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
     "mongodb": "^5.9.2",
     "mongoose": "^8.10.0",

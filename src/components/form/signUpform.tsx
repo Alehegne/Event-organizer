@@ -88,7 +88,7 @@ const SignUpForm = () => {
 
   return (
     <Form {...form}>
-      <div className="p-4 bg-gray-50 rounded-lg shadow-2xl">
+      <div className="p-4  rounded-lg shadow-2xl">
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
           <div className="space-y-2">
             <FormField

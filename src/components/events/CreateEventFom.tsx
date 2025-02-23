@@ -132,7 +132,7 @@ const EventForm = ({
                     <Input
                       placeholder="Event Title"
                       {...field}
-                      className="input-field"
+                      className="input-field input-bg"
                     />
                   </FormControl>
 
@@ -145,7 +145,7 @@ const EventForm = ({
               control={form.control}
               name="categoryId"
               render={({ field }) => (
-                <FormItem className="w-full">
+                <FormItem className="w-full input-bg">
                   <FormControl>
                     <DropDown
                       onchangeHandler={field.onChange}
@@ -168,7 +168,7 @@ const EventForm = ({
                     <Textarea
                       placeholder="description"
                       {...field}
-                      className="textarea rounded-2xl"
+                      className="textarea rounded-2xl input-bg"
                     />
                   </FormControl>
 
@@ -201,7 +201,7 @@ const EventForm = ({
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full input-bg px-4 py-2">
                     <Image
                       src="/assets/icons/location-grey.svg"
                       alt="calendar"
@@ -212,7 +212,7 @@ const EventForm = ({
                     <Input
                       placeholder="Event location or Online"
                       {...field}
-                      className="input-field focus-visible:ring-0 shadow-none"
+                      className="input-field focus-visible:ring-0 shadow-none input-bg "
                     />
                   </div>
                 </FormControl>
@@ -228,7 +228,7 @@ const EventForm = ({
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-emerald-300  px-4 py-2">
                       <Image
                         src="/assets/icons/calendar.svg"
                         alt="calendar"
@@ -257,7 +257,7 @@ const EventForm = ({
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-emerald-300  px-4 py-2">
                       <Image
                         src="/assets/icons/calendar.svg"
                         alt="calendar"
@@ -288,7 +288,7 @@ const EventForm = ({
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full input-bg  px-4 py-2">
                       <Image
                         src="/assets/icons/dollar.svg"
                         alt="dollar"
@@ -299,7 +299,7 @@ const EventForm = ({
                         type="number"
                         placeholder="Price"
                         {...field}
-                        className="w-full hide-arrows focus-visible:ring-0 shadow-none border-none appearance-none outline-offset-0 outline-none bg-transparent text-[19px] ml-2 text-gray-800"
+                        className="w-full hide-arrows focus-visible:ring-0 shadow-none input-bg border-none appearance-none outline-offset-0 outline-none bg-transparent text-[19px] ml-2 text-gray-800"
                       />
                       <FormField
                         control={form.control}
@@ -317,6 +317,7 @@ const EventForm = ({
                                 </label>
                                 <Checkbox
                                   id="isFree"
+                                  disabled={form.watch("price") !== "0"}
                                   checked={field.value}
                                   onCheckedChange={field.onChange}
                                   className="h-5 w-5 border-2 peer"
@@ -341,7 +342,7 @@ const EventForm = ({
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full input-bg    px-4 py-2">
                       <Image
                         src="/assets/icons/link.svg"
                         alt="url"
@@ -352,7 +353,7 @@ const EventForm = ({
                       <Input
                         placeholder="URL"
                         {...field}
-                        className="input-field focus-visible:ring-0 shadow-none"
+                        className="input-field focus-visible:ring-0 shadow-none input-bg "
                       />
                     </div>
                   </FormControl>

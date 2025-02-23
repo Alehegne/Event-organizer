@@ -59,29 +59,33 @@ const DropDown = ({ onchangeHandler, value }: DropDownProps) => {
   return (
     <Select onValueChange={onchangeHandler} defaultValue={value}>
       <FormControl>
-        <SelectTrigger className="select-field">
+        <SelectTrigger className="select-field  h-full">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
       </FormControl>
-      <SelectContent>
+      <SelectContent className="body-bg-gradient border-2 border-green-950">
         {categories?.length > 0 &&
           categories?.map((category) => (
-            <SelectItem key={category._id} value={category._id}>
+            <SelectItem
+              className="hover:!bg-emerald-200"
+              key={category._id}
+              value={category._id}
+            >
               {category.name}
             </SelectItem>
           ))}
 
         <AlertDialog>
-          <AlertDialogTrigger className="bg-gray-300 hover:bg-gray-400 mt-1 w-full p-2 rounded-lg text-start">
+          <AlertDialogTrigger className="hover:bg-emerald-300 mt-1 w-full p-2 rounded-lg text-start">
             Add New Event
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="body-bg-gradient text-xl leading-6">
             <AlertDialogHeader>
               <AlertDialogTitle>New Category</AlertDialogTitle>
               <AlertDialogDescription>
                 <Input
                   placeholder="Category Name"
-                  className="input-field mt-3"
+                  className="input-field input-bg mt-3"
                   value={newCategory || " "}
                   onChange={(e) => setNewCategory(() => e.target.value)}
                 />
@@ -89,13 +93,15 @@ const DropDown = ({ onchangeHandler, value }: DropDownProps) => {
             </AlertDialogHeader>
             <AlertDialogFooter className="flex flex-col md:flex-row gap-4 justify-between items-center w-full">
               <AlertDialogAction
-                className="w-full bg-purple-800"
+                className="w-full bg-purple-800 "
                 onClick={() => startTransition(handleAddCategory)}
               >
                 Add
               </AlertDialogAction>
 
-              <AlertDialogCancel className="w-full">Cancel</AlertDialogCancel>
+              <AlertDialogCancel className="w-full bg-gray-500">
+                Cancel
+              </AlertDialogCancel>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

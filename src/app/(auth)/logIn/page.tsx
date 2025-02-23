@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LogIn() {
   return (
-    <section className=" dark:bg-gray-800 text-gray-800 dark:text-gray-100">
+    <section className="  text-gray-800">
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-12">
         <div className="h-screen min-w-[70%] relative">
           <Image

@@ -5,7 +5,7 @@ export interface IOrder{
     _id:string;
     createdAt:Date;
     stripeId:string;
-    totalAmound:number;
+    totalAmount:number;
     event:{_id:string,title:string};
     buyer:{_id:string,firstName:string,lastName:string};
 }
@@ -14,7 +14,7 @@ export type IOrderItem = {
     _id:string;
     createdAt:Date;
     stripeId:string;
-    totalAmound:number;
+    totalAmount:number;
     event:{_id:string,title:string};
     buyer:{_id:string,firstName:string,lastName:string};
 }

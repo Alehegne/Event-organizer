@@ -98,7 +98,7 @@ export default function SignIn() {
   return (
     <>
       <Form {...form}>
-        <div className=" bg-gray-50 shadow-2xl p-4">
+        <div className=" shadow-2xl p-4 text-lg">
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-2">
               <FormField

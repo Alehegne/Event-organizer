@@ -51,8 +51,8 @@ export const createOrder = async (order: CreateOrderParams) => {
     console.log("creating order in db", order);
     const newOrder = await Order.create({
       ...order,
-      event: order.eventId,
-      buyer: order.buyerId,
+      event: order.eventId, //to allow mongo db to reference the event
+      buyer: order.buyerId, //to allow mongo db to reference the buyer
     });
 
     console.log("new order created in the db", newOrder);
@@ -69,6 +69,7 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
     await connectToDatabase()
 
     if (!eventId) throw new Error('Event ID is required')
+      
     const eventObjectId = new ObjectId(eventId)
 
     const orders = await Order.aggregate([

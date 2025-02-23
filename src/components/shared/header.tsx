@@ -1,67 +1,79 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import MobileNavs from "./navs/mobileNavs";
 import NavItems from "./navs/navItems";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Header = () => {
+  const [initialHeight, setInitialHeight] = useState(160);
+
   const session = useSession();
   const router = useRouter();
 
-  const [headerHeight, setHeaderHeight] = useState(150);
-
-  const minHeight = 100; // Minimum height in pixels
+  //set the heights of the header
+  const fixedHeight = 80;
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const newHeight = Math.max(150 - scrollPosition * 0.4, minHeight);
-      setHeaderHeight(newHeight);
+      if (window.scrollY > 80) {
+        setInitialHeight(fixedHeight);
+      } else {
+        setInitialHeight(Math.trunc(160 - window.scrollY));
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <header
-      className="shadow-md w-full transition-all sticky top-0 bg-white z-10"
-      style={{ height: `${headerHeight}px` }}
+    <motion.header
+      style={{ height: `${initialHeight}px` }}
+      className={`shadow-md transition-all w-full p-4  animate-border-rotate  fixed    z-50`}
     >
-      <div className="flex justify-between items-center h-full container mx-auto">
+      <div className=" w-full h-full rounded-lg">
         <div
-          onClick={() => router.push("/")}
-          className="w-[100px] md:w-[200px] h-full relative"
+          style={{ marginBottom: `600px` }}
+          className="flex justify-between rounded-lg  items-center h-full container mx-auto"
         >
-          <Image
-            src="/assets/images/logo.svg"
-            fill
-            alt="logo image"
-            style={{ objectFit: "contain" }}
-          />
-        </div>
-        <NavItems />
-        <div className="flex gap-4 items-center">
-          <Button
-            onClick={() => {
-              if (session.data) {
-                signOut();
-              } else {
-                signIn();
-              }
-            }}
-            className="bg-purple-700 rounded-xl hover:bg-purple-600 hover:scale-105 transition-all font-bold"
+          <div
+            onClick={() => router.push("/")}
+            className="w-[110px] md:w-[200px] h-full relative"
           >
-            {session.data ? "Log Out" : "Log In"}
-          </Button>
-          <MobileNavs />
+            <Image
+              src="/assets/icons/shegerlogo.svg"
+              fill
+              alt="logo image"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          <NavItems />
+          <div className="flex gap-4 items-center">
+            <Button
+              onClick={() => {
+                if (session.data) {
+                  signOut();
+                } else {
+                  signIn();
+                }
+              }}
+              className="bg-emerald-950 p-4 px-8 rounded-md hover:bg-green-900 hover:scale-105 transition-all font-bold"
+            >
+              {session.data ? "Log Out" : "Log In"}
+            </Button>
+            <MobileNavs />
+          </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

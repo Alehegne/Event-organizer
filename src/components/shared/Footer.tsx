@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="h-[100px] flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-4">
         <Link href="/" className="w-[100px] md:w-[200px] h-full relative">
           <Image
-            src="/assets/images/logo.svg"
+            src="/assets/icons/shegerlogo.svg"
             fill
             alt="logo image"
             style={{ objectFit: "contain" }}

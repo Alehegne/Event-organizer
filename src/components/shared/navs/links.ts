@@ -10,6 +10,10 @@ export const navItems = [
         link:"/events/create"
     },
     {
+        name:"Events",
+        link:"/events"
+    },
+    {
         name:"My Profile",
         link:"/profile"
     },

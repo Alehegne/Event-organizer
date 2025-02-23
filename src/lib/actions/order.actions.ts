@@ -1,16 +1,19 @@
 "use server"
 
-import { CheckoutOrderParams, CreateOrderParams } from "@/types"
+import { CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
 import { connnectToDatabase } from "../mongoDb/database";
 import Order from "../mongoDb/database/model/order.model";
 import { handleError } from "../utils";
+import { ObjectId } from "mongodb";
+import User from "../mongoDb/database/model/user.model";
+import Event from "../mongoDb/database/model/event.model";
 
 
 export const checkoutOrder = async(order:CheckoutOrderParams)=>{
     console.log("checking out in func...")
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{apiVersion:"2025-01-27.acacia",typescript:true})
     console.log("stripe in func",stripe)
     try {
         const price = order.isFree ? 0 :Number(order.price) * 100
@@ -82,5 +85,94 @@ export const createOrder = async (order: CreateOrderParams) => {
     return JSON.parse(JSON.stringify(newOrder));
   } catch (error) {
     handleError(error);
+  }
+}
+
+
+export async function getOrdersByEvent({searchString,eventId}:GetOrdersByEventParams){
+  try {
+    await connnectToDatabase();
+    if(!eventId) throw new Error("Event ID is required");
+    const eventObjectId = new ObjectId(eventId);
+
+    const orders = await Order.aggregate([
+      {
+        $lookup:{
+          from:"Users",
+          localField:"buyer",
+          foreignField:"_id",
+          as:"buyer",
+        }
+      },
+      {
+        $unwind:"$buyer"
+      },
+      {
+        $lookup:{
+          from:"events",
+          localField:"event",
+          foreignField:"_id",
+          as:"event",
+        }
+      },
+      {
+        $unwind:"$event"
+      },
+      {
+        $project:{
+          _id:1,
+          totalAmount:1,
+          createdAt:1,
+          eventId:"$event._id",
+          buyer:{
+            $concat:['$buyer.firstName',' ', '$buyer.lastName']
+          }
+        }
+      },
+      {
+        $match:{
+          $and:[{eventId:eventObjectId},{buyer:{$regex:RegExp(searchString,'i')}}]
+        }
+      }
+    ])
+    
+    return JSON.parse(JSON.stringify(orders))
+
+  } catch (error) {
+     handleError(error);
+  }
+
+
+}
+
+export async function getOrdersByUser({userId,limit=3,page}:GetOrdersByUserParams){
+
+  try {
+    await connnectToDatabase();
+    
+    const skipAmount = (Number(page)-1)*limit
+    const conditions = {buyer:userId}
+
+    const orders = await Order.distinct("event._id")
+             .find(conditions)
+            .sort({createdAt:'desc'})
+            .skip(skipAmount)
+            .limit(limit)
+            .populate({
+            path:'event',
+            model:Event,
+            populate:{
+              path:'organizer',
+              model:User,
+              select:'_id firstName lastName'
+            }
+           })
+          
+    const ordersCount = await Order.distinct('event._id').countDocuments(conditions)
+
+    return { data: JSON.parse(JSON.stringify(orders)), totalPages: Math.ceil(ordersCount / limit) }
+    
+  } catch (error) {
+    handleError(error)
   }
 }

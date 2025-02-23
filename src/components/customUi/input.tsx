@@ -20,9 +20,7 @@ export default function CustomInput({ type, placeholder }: props) {
 
   return (
     <Input
-      className={`${
-        enlarge ? "w-full md:w-1/2" : "w-1/2 md:w-1/5"
-      } transition-all`}
+      className={`${enlarge ? "w-full" : "w-full md:w-1/2"} transition-all`}
       onFocus={handleFocus}
       onBlur={handleBlur}
       type={type}
