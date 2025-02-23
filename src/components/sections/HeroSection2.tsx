@@ -1,10 +1,15 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 
 const sections = [
+  {
+    title: "Discover & Post Events Easily",
+    content:
+      "Sheger Post is your go-to platform for discovering and sharing events in Ethiopia. Whether it's music concerts, business expos, traditional festivals, or networking events, we bring you the best opportunities to connect with people. Our platform allows users to post events for free or as paid listings, making it easy to reach the right audience. With our intuitive and user-friendly design, anyone can create, manage, and promote events within minutes.",
+    image: "/assets/images/hero1.png",
+  },
   {
     title: "Seamless Event Booking & Ticketing",
     content:
@@ -22,12 +27,6 @@ const sections = [
     content:
       "Never miss an event again! With Sheger Post, you can explore the latest and most popular events happening around Ethiopia. Our homepage features a “Trending Events” section, highlighting must-attend concerts, cultural shows, business meetups, and educational workshops. With our smart recommendation system, you’ll get event suggestions based on your interests and location, making it effortless to find events that matter to you.",
     image: "/assets/images/hero4.png",
-  },
-  {
-    title: "Discover & Post Events Easily",
-    content:
-      "Sheger Post is your go-to platform for discovering and sharing events in Ethiopia. Whether it's music concerts, business expos, traditional festivals, or networking events, we bring you the best opportunities to connect with people. Our platform allows users to post events for free or as paid listings, making it easy to reach the right audience. With our intuitive and user-friendly design, anyone can create, manage, and promote events within minutes.",
-    image: "/assets/images/hero1.png",
   },
 ];
 

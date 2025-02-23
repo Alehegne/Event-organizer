@@ -6,13 +6,14 @@ export const navItems = [
         link:"/"
     },
     {
-        name:"Create Event",
-        link:"/events/create"
-    },
-    {
         name:"Events",
         link:"/events"
     },
+    {
+        name:"Create Event",
+        link:"/events/create"
+    },
+   
     {
         name:"My Profile",
         link:"/profile"

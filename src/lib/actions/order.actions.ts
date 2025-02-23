@@ -12,15 +12,15 @@ import Event from "../mongoDb/database/model/event.model";
 
 
 export const checkoutOrder = async(order:CheckoutOrderParams)=>{
-    console.log("checking out in func...")
+    // console.log("checking out in func...")
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!,{apiVersion:"2025-01-27.acacia",typescript:true})
-    console.log("stripe in func",stripe)
+    // console.log("stripe in func",stripe)
     try {
         const price = order.isFree ? 0 :Number(order.price) * 100
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
         submit_type:"pay",
-        payment_method_types:["card","paypal","amazon_pay","alipay"],
+        payment_method_types:["card"],
         line_items: [
           {
             price_data:{

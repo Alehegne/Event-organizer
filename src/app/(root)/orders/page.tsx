@@ -1,38 +1,17 @@
 import React from "react";
 import Search from "@/components/shared/Search";
-import { getOrdersByEvent } from "@/lib/actions/order.actions";
-import { formatDateTime, formatPrice } from "@/lib/utils";
-import { IOrderItem } from "@/lib/mongoDb/database/model/order.model";
+// import { getOrdersByEvent } from "@/lib/actions/order.actions";
+// import { formatDateTime, formatPrice } from "@/lib/utils";
+// import { IOrderItem } from "@/lib/mongoDb/database/model/order.model";
 
-const OrderedPage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string | number]: string | null }>;
-}) => {
-  const searchParam = await searchParams;
-  const eventId = (searchParam?.eventId as string) || "";
-  const searchText = (searchParam?.query as string) || "";
+const OrderedPage = async ({}) => {
+  // const searchParam = await searchParams;
+  // const eventId = (searchParam?.eventId as string) || "";
+  // const searchText = (searchParam?.query as string) || "";
 
   // const orders = await getOrdersByEvent({ eventId, searchString: searchText })
 
   //sample data for design testing
-
-  const orders = [
-    {
-      _id: "1",
-      createdAt: new Date(),
-      eventTitle: "Event Title",
-      buyer: "John Doe",
-      totalAmount: 1000,
-    },
-    {
-      _id: "2",
-      createdAt: new Date(),
-      eventTitle: "Event Title",
-      buyer: "John Doe",
-      totalAmount: 1000,
-    },
-  ];
 
   return (
     <>
@@ -57,40 +36,7 @@ const OrderedPage = async ({
               <th className="min-w-[100px] py-3 text-right">Amount</th>
             </tr>
           </thead>
-          <tbody>
-            {orders && orders.length === 0 ? (
-              <tr className="border-b">
-                <td colSpan={5} className="py-4 text-center text-gray-500">
-                  No orders found.
-                </td>
-              </tr>
-            ) : (
-              <>
-                {orders &&
-                  orders.map((row: IOrderItem) => (
-                    <tr
-                      key={row._id}
-                      className="p-regular-14 lg:p-regular-16 border-b "
-                      style={{ boxSizing: "border-box" }}
-                    >
-                      <td className="min-w-[250px] py-4 text-primary-500">
-                        {row._id}
-                      </td>
-                      <td className="min-w-[200px] flex-1 py-4 pr-4">
-                        {row.eventTitle}
-                      </td>
-                      <td className="min-w-[150px] py-4">{row.buyer}</td>
-                      <td className="min-w-[100px] py-4">
-                        {formatDateTime(row.createdAt).dateTime}
-                      </td>
-                      <td className="min-w-[100px] py-4 text-right">
-                        {formatPrice(row.totalAmount)}
-                      </td>
-                    </tr>
-                  ))}
-              </>
-            )}
-          </tbody>
+          <tbody></tbody>
         </table>
       </section>
     </>

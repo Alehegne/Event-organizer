@@ -1,5 +1,5 @@
-import Events from "@/components/sections/Events";
-import HeroSection from "@/components/sections/HeroSection";
+// import Events from "@/components/sections/Events";
+// import HeroSection from "@/components/sections/HeroSection";
 import HeroSection2 from "@/components/sections/HeroSection2";
 import { authOptions } from "@/lib/auth/authOptions";
 import { getServerSession } from "next-auth";

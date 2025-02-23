@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import CheckOutButton from "@/components/shared/CheckOutButton";
 import Collection from "@/components/shared/Collection";
 import {
@@ -15,6 +16,11 @@ export default async function Page({
   const id = (await params).id;
   const event = await getEventById(id);
 
+  //if there is no event
+  if (!event) {
+    return <NotFound />;
+  }
+
   // const page = (await searchParams).page;
 
   const relatedEvents = await getRelatedEventsByCategory({
@@ -24,8 +30,8 @@ export default async function Page({
   });
   // console.log("related events", relatedEvents);
   return (
-    <div className="bg-purple-50 bg-dotted-pattern bg-contain">
-      <section className="flex justify-center items-center bg-purple-50 bg-dotted-pattern bg-contain">
+    <div className="bg-cyan-400 bg-dotted-pattern bg-contain">
+      <section className="flex justify-center items-center bg-cyan-400 bg-dotted-pattern bg-contain">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <Image
             src={event.imageUrl}
@@ -98,7 +104,7 @@ export default async function Page({
         </div>
       </section>
       {/* related events with same category */}
-      <section className="px-4 mt-10 bg-purple-50 bg-dotted-pattern bg-contain">
+      <section className="px-4 mt-10 bg-cyan-400 bg-dotted-pattern bg-contain">
         <div className="2xl:max-w-7xl md:px-10">
           <h1 className="text-4xl font-bold mb-4 ml-4">Related events</h1>
           <Collection
